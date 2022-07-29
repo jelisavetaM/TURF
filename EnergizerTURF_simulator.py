@@ -111,7 +111,7 @@ else:
         targetProductsBrand = []
 
     finalTarget = targetProductsSKU + targetProductsBrand
-   
+
 finalTarget = list(set(finalTarget))
 if len(finalTarget) == 0:
     st.error('Please choose SKU and/or BRAND level to run stimulation.')
@@ -120,6 +120,8 @@ if len(finalTarget) == 1:
     st.error('TURF cannot be run on one item, please add at least one more.')
     st.stop()
 
+st.write(originalTURF.columns)
+originalTURF = originalTURF.drop(['USERID','CHANNEL','GENDER','AGE']
 calc = st.button('✈ Calculate')
 
 st.markdown('#')
@@ -131,7 +133,7 @@ if calc:
     sets = make_id_sets(originalTURF)
     if 'None of the above' in originalTURF.columns:
         originalTURF = originalTURF.drop('None of the above', axis=1)
-    order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID','CHANNEL','GENDER','AGE'], axis=1).sum().idxmax()))
+    order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum().idxmax()))
 
     res = {order[i]: percentages[i] for i in range(len(order))}
     resToDF = pd.DataFrame(res.items(), columns=['SKU','Reach'])
