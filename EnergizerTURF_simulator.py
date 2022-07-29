@@ -30,9 +30,6 @@ def calculate_order_percentages(sets,upper_range_loop,dataframe,starting_feature
 @st.cache 
 def reach_percentage_and_order(sets,starting_feature_index,dataframe):
     """Initaties two lists, unduplicated reach and feature order  using starting index value and DF"""
-    st.write(sets)
-    st.write(starting_feature_index)
-    st.stop()
     return [((len(sets[starting_feature_index]))/(len(dataframe)))], [dataframe.columns[starting_feature_index]]
 
 # import data
@@ -121,7 +118,7 @@ if calc:
     finalTarget.append('USERID')
     originalTURF = originalTURF[[col for col in finalTarget]]
     sets = make_id_sets(originalTURF)
-    order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum().idxmax())[0])
+    order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum().idxmax()))
 
     res = {order[i]: percentages[i] for i in range(len(order))}
     resToDF = pd.DataFrame(res.items(), columns=['SKU','Reach'])
