@@ -122,6 +122,7 @@ st.markdown('#')
 
 if calc:
     st.write(originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum()))
+    st.stop()
     finalTarget.append('USERID')
     originalTURF = originalTURF[[col for col in finalTarget]]
     sets = make_id_sets(originalTURF)
