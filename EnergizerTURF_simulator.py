@@ -121,7 +121,8 @@ calc = st.button('✈ Calculate')
 st.markdown('#')
 
 if calc:
-    st.write(originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1)))
+    originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1))
+    st.write(originalTURF)
     st.stop()
     finalTarget.append('USERID')
     originalTURF = originalTURF[[col for col in finalTarget]]
