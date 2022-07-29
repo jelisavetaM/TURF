@@ -47,7 +47,7 @@ with st.sidebar:
 
     if AutoChannel and not Walmart:
         originalTURF = originalTURF.query('CHANNEL == "AUTO"')
-        originalTURF = originalTURF.iloc[:, 'USERID':'None of the above']
+        originalTURF = originalTURF.loc[:, 'USERID':'None of the above']
     elif not AutoChannel and Walmart:
         originalTURF = originalTURF.query('CHANNEL == "WALMART"')
         originalTURF = originalTURF.drop(df.iloc[:, 'Arm Hammer Hidden Cabana Breeze car air freshener 2 5 oz 4 99':'Yankee Candle Vent Stick Pink Sands 6 49'],axis = 1)
