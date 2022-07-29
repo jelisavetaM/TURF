@@ -67,6 +67,7 @@ with st.sidebar:
             originalTURF = originalTURF.query('AGE == "' + ageFilter + '"')
     st.markdown('#')
     st.markdown('#')
+    st.markdown('#')
     with st.expander('How to use TURF simulator?'):
         st.markdown("To be added...",unsafe_allow_html = True)
         
