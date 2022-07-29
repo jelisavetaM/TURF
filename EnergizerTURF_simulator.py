@@ -48,12 +48,16 @@ with st.sidebar:
     if AutoChannel and not Walmart:
         originalTURF = originalTURF.query('CHANNEL == "AUTO"')      
         originalTURF = originalTURF.loc[:, 'USERID':'None of the above']
+        brand_list = ["Refresh Your Car!","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm & Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi-Clean","Paradise","Blessed","Mothers"]
     elif not AutoChannel and Walmart:
         originalTURF = originalTURF.query('CHANNEL == "WALMART"')
         originalTURF = originalTURF.drop(originalTURF.loc[:, 'Arm Hammer Hidden Cabana Breeze car air freshener 2 5 oz 4 99':'Yankee Candle Vent Stick Pink Sands 6 49'].columns,axis = 1)
+        brand_list = ["Armor All ","AXE","California Scents","Citrus Magic","Driven","Febreze","Funkaway","Jelly Belly","Little Trees","Ozium","Refresh Your Car!","Scent Bomb","Yankee/WW"]
     elif not AutoChannel and not Walmart:
         st.error('Please choose at least one channel')
         st.stop()
+    elif AutoChannel and Walmart:
+        brand_list = ["Refresh Your Car!","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm & Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi-Clean","Paradise","Blessed","Mothers","Armor All ","Citrus Magic","Funkaway","Yankee/WW"]
 
     st.caption("")
 
@@ -86,7 +90,7 @@ SKUs = st.multiselect(
 # Multiselect for agregated levels (Brand, Example_1, Example_2, etc.)
 Brands = st.multiselect(
      'Which BRAND would you like to include in this scenario? Choose from the list or type in brand names.',
-     ['AXE', 'California Scents', 'Refresh Your Car', 'Jelly Belly', 'Armor All', 'Driven'],
+     brand_list,
      help = "Choose brands by clicking on the input. You can type in brand name as well.")
 
 allSKUs = st.checkbox('Include all SKUs in the stimulation')
