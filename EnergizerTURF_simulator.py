@@ -5,6 +5,7 @@ import streamlit as st
 import plotly.figure_factory as ff
 import altair as alt
 pwd = st.sidebar.text_input('Password:', value='', type='password')
+if pwd == "test":
 	@st.cache 
 	def make_id_sets(dataframe):
 	    sets = []
