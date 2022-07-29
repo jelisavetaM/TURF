@@ -4,7 +4,7 @@ import streamlit as st
 import altair as alt
 
 
-with open('../config.yaml') as file:
+with open('config.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
 authenticator = Authenticate(
