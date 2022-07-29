@@ -120,7 +120,10 @@ if len(finalTarget) == 1:
     st.error('TURF cannot be run on one item, please add at least one more.')
     st.stop()
 
-originalTURF = originalTURF.drop(['CHANNEL','GENDER','AGE'], axis=1)
+for var in ['CHANNEL','GENDER','AGE']:
+    if var in originalTURF.columns:
+        originalTURF = originalTURF.drop(var, axis=1)
+
 
 calc = st.button('✈ Calculate')
 st.markdown('#')
