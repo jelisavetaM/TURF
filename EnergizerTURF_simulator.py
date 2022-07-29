@@ -2,20 +2,6 @@
 import pandas as pd
 import streamlit as st
 import altair as alt
-import streamlit_authenticator as stauth
-
-with open('config.yaml') as file:
-    config = yaml.load(file, Loader=SafeLoader)
-
-authenticator = Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days'],
-    config['preauthorized']
-)
-
-name, authentication_status, username = authenticator.login('Login', 'main')
 
 @st.cache 
 def make_id_sets(dataframe):
