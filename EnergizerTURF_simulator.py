@@ -121,13 +121,11 @@ calc = st.button('✈ Calculate')
 st.markdown('#')
 
 if calc:
-    originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1))
-    st.write(originalTURF.astype(str))
-    st.stop()
+
     finalTarget.append('USERID')
     originalTURF = originalTURF[[col for col in finalTarget]]
     sets = make_id_sets(originalTURF)
-    order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum().idxmax()))
+    order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID','CHANNEL','GENDER','AGE'], axis=1).sum().idxmax()))
 
     res = {order[i]: percentages[i] for i in range(len(order))}
     resToDF = pd.DataFrame(res.items(), columns=['SKU','Reach'])
