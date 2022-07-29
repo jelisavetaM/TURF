@@ -106,6 +106,9 @@ finalTarget = targetProductsSKU + targetProductsBrand
 if len(finalTarget) == 0:
     st.error('Please choose SKU and/or BRAND level to run stimulation.')
     st.stop()
+if len(finalTarget) == 1:
+    st.error('TURF cannot be run on one item, please add at least one more.')
+    st.stop()
 
 calc = st.button('✈ Calculate')
 
