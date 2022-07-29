@@ -124,7 +124,7 @@ st.write(originalTURF.columns)
 originalTURF['CHANNEL']
 originalTURF['GENDER']
 originalTURF['AGE']
-originalTURF = originalTURF.drop(['CHANNEL','GENDER','AGE'])
+originalTURF = originalTURF.drop(['CHANNEL','GENDER','AGE'], axis=1)
 st.write(originalTURF.columns)
 st.stop()
 calc = st.button('✈ Calculate')
