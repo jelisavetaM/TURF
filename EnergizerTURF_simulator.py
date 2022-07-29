@@ -133,7 +133,6 @@ if calc:
 
     st.markdown('------------------------------')
     st.markdown('#')
-    st.markdown('#')
 
     c = alt.Chart(resToDFplot).mark_bar(size=10).encode(
     alt.X('SKU', sort=list(resToDFplot['SKU']), axis=alt.Axis(labelAngle=-75, labelOverlap=False)),
@@ -147,7 +146,7 @@ if calc:
     strokeWidth=0
 ).properties(
     width=800,
-    height=600,
+    height=580,
     title='Selected SKUs reaches'
 )
 
