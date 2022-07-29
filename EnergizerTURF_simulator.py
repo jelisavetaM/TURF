@@ -68,7 +68,7 @@ with st.sidebar:
     st.markdown('#')
     st.markdown('#')
     with st.expander('Instructions'):
-        st.markdown("test",unsafe_allow_html = True)
+        st.markdown("To be added...",unsafe_allow_html = True)
         
 allColumns = list(originalTURF.columns)
 del allColumns[0:4]
