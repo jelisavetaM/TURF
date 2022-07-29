@@ -109,7 +109,6 @@ else:
     finalTarget = targetProductsSKU + targetProductsBrand
    
 finalTarget = list(set(finalTarget))
-st.write(type(finalTarget))
 if len(finalTarget) == 0:
     st.error('Please choose SKU and/or BRAND level to run stimulation.')
     st.stop()
@@ -118,7 +117,8 @@ if len(finalTarget) == 1:
     st.stop()
 
 calc = st.button('✈ Calculate')
-
+st.write(originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum())
+st.stop()
 st.markdown('#')
 
 if calc:
