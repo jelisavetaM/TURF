@@ -66,9 +66,9 @@ with st.sidebar:
             ageFilter = st.radio('Please select age filter:',('18-35', '36+'))
             originalTURF = originalTURF.query('AGE == "' + ageFilter + '"')
 
-    with st.expander('Roadmap'):
+    with st.expander('Instructions'):
         st.markdown("test",unsafe_allow_html = True)
-        st.markdown("<br></br>", unsafe_allow_html = True)
+        st.markdown('#')
 allColumns = list(originalTURF.columns)
 del allColumns[0:4]
 
