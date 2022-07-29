@@ -123,7 +123,7 @@ if len(finalTarget) == 1:
 for var in ['CHANNEL','GENDER','AGE']:
     if var in originalTURF.columns:
         originalTURF = originalTURF.drop(var, axis=1)
-     if var in finalTarget:
+    if var in finalTarget:
         finalTarget.remove(var)
 
 
