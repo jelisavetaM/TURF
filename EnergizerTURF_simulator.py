@@ -89,19 +89,25 @@ Brands = st.multiselect(
      ['AXE', 'California Scents', 'Refresh Your Car', 'Jelly Belly', 'Armor All', 'Driven'],
      help = "Choose brands by clicking on the input. You can type in brand name as well.")
 
-if len(SKUs) > 0:
-    targetProductsSKU = [col for col in originalTURF.columns if col in SKUs]  
-else:
-    targetProductsSKU = []
+allSKUs = st.checkbox('Include all SKUs in the stimulation')
 
-if len(Brands) > 0:
-    targetProductsBrand = []
-    for Brand in Brands:
-        targetProductsBrand = targetProductsBrand + ([col for col in allColumns if Brand in col])
+if allSKUs:
+    finalTarget = list(originalTURF.columns)
 else:
-    targetProductsBrand = []
+    if len(SKUs) > 0:
+        targetProductsSKU = [col for col in originalTURF.columns if col in SKUs]  
+    else:
+        targetProductsSKU = []
 
-finalTarget = targetProductsSKU + targetProductsBrand
+    if len(Brands) > 0:
+        targetProductsBrand = []
+        for Brand in Brands:
+            targetProductsBrand = targetProductsBrand + ([col for col in allColumns if Brand in col])
+    else:
+        targetProductsBrand = []
+
+    finalTarget = targetProductsSKU + targetProductsBrand
+    
 finalTarget = list(set(finalTarget))
 
 if len(finalTarget) == 0:
