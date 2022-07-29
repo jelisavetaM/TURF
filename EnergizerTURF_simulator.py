@@ -102,6 +102,7 @@ else:
     targetProductsBrand = []
 
 finalTarget = targetProductsSKU + targetProductsBrand
+finalTarget = list(set(finalTarget))
 
 if len(finalTarget) == 0:
     st.error('Please choose SKU and/or BRAND level to run stimulation.')
