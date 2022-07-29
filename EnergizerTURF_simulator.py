@@ -122,7 +122,7 @@ st.markdown('#')
 
 if calc:
     originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1))
-    st.write(originalTURF)
+    st.write(originalTURF.astype(str))
     st.stop()
     finalTarget.append('USERID')
     originalTURF = originalTURF[[col for col in finalTarget]]
