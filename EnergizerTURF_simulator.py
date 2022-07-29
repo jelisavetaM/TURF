@@ -123,6 +123,7 @@ if len(finalTarget) == 1:
 st.write(originalTURF.columns)
 originalTURF = originalTURF.drop(['USERID','CHANNEL','GENDER','AGE'])
 st.write(originalTURF.columns)
+st.stop()
 calc = st.button('✈ Calculate')
 
 st.markdown('#')
