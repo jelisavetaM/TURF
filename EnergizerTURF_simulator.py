@@ -2,7 +2,7 @@
 import pandas as pd
 import streamlit as st
 import altair as alt
-
+import streamlit_authenticator as stauth
 
 with open('config.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
