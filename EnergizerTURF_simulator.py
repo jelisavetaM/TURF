@@ -106,7 +106,7 @@ else:
     if len(Brands) > 0:
         targetProductsBrand = []
         for Brand in Brands:
-            targetProductsBrand = targetProductsBrand + ([col for col in allColumns if Brand in col])
+            targetProductsBrand = targetProductsBrand + ([col for col in allColumns if Brand.lower() in col])
     else:
         targetProductsBrand = []
 
