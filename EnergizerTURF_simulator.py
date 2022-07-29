@@ -1,11 +1,9 @@
 # requirements
-import pyreadstat
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 import plotly.figure_factory as ff
 import altair as alt
-from PIL import Image
 
 @st.cache 
 def make_id_sets(dataframe):
