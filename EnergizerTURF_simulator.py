@@ -47,10 +47,10 @@ with st.sidebar:
 
     if AutoChannel and not Walmart:
         originalTURF = originalTURF.query('CHANNEL == "AUTO"')
-        originalTURF = originalTURF.iloc[:, 0:251, 455]
+        originalTURF = originalTURF.iloc[:, [0:251, 455]]
     elif not AutoChannel and Walmart:
         originalTURF = originalTURF.query('CHANNEL == "WALMART"')
-        originalTURF = originalTURF.iloc[:, 0:4, 251:455]
+        originalTURF = originalTURF.iloc[:, [0:4, 251:455]]
     elif not AutoChannel and not Walmart:
         st.error('Please choose at least one channel')
         st.stop()
