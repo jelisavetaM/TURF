@@ -37,9 +37,7 @@ originalTURF = pd.read_csv('Merged.csv')
 
 # Add filters for respondents
 with st.sidebar:
-    with st.expander('Roadmap'):
-        st.markdown("test",unsafe_allow_html = True)
-        st.markdown("<br></br>", unsafe_allow_html = True)
+
     st.markdown("<div style='color:red; font-size:30px; position:absolute; top:-8vh;'>EyeSee TURF simulator</div>", unsafe_allow_html=True)
     st.markdown("#")
     st.markdown("#")
@@ -68,7 +66,9 @@ with st.sidebar:
             ageFilter = st.radio('Please select age filter:',('18-35', '36+'))
             originalTURF = originalTURF.query('AGE == "' + ageFilter + '"')
 
-
+    with st.expander('Roadmap'):
+        st.markdown("test",unsafe_allow_html = True)
+        st.markdown("<br></br>", unsafe_allow_html = True)
 allColumns = list(originalTURF.columns)
 del allColumns[0:4]
 
