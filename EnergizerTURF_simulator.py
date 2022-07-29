@@ -30,6 +30,8 @@ def calculate_order_percentages(sets,upper_range_loop,dataframe,starting_feature
 @st.cache 
 def reach_percentage_and_order(sets,starting_feature_index,dataframe):
     """Initaties two lists, unduplicated reach and feature order  using starting index value and DF"""
+    st.write(sets)
+    st.stop()
     return [((len(sets[starting_feature_index]))/(len(dataframe)))], [dataframe.columns[starting_feature_index]]
 
 # import data
