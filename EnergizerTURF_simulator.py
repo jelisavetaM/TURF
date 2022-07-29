@@ -52,7 +52,7 @@ with st.sidebar:
     elif not AutoChannel and Walmart:
         originalTURF = originalTURF.query('CHANNEL == "WALMART"')
         originalTURF = originalTURF.drop(originalTURF.loc[:, 'Arm Hammer Hidden Cabana Breeze car air freshener 2 5 oz 4 99':'Yankee Candle Vent Stick Pink Sands 6 49'].columns,axis = 1)
-        brand_list = ["Armor All ","AXE","California Scents","Citrus Magic","Driven","Febreze","Funkaway","Jelly Belly","Little Trees","Ozium","Refresh Your Car!","Scent Bomb","Yankee/WW"]
+        brand_list = ["Armor All ","AXE","California Scents","Citrus Magic","Driven","Febreze","Funkaway","Jelly Belly","Little Trees","Ozium","Refresh Your Car!","Scent Bomb","Yankee"]
     elif not AutoChannel and not Walmart:
         st.error('Please choose at least one channel')
         st.stop()
@@ -150,6 +150,7 @@ if calc:
     resToDF = resToDF.drop('Reach', axis = 1)
     resToDF = resToDF[['SKU','Reach %','Increment']]
     # st.write(resToDF.astype(str))
+    resToDF.drop(resToDF[resToDF['SKU'] == "USERID"].index, inplace = True)
     st.table(resToDF)
 
     st.markdown('------------------------------')
