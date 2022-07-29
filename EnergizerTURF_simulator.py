@@ -77,13 +77,13 @@ del allColumns[0:4]
 # Choose target SKUs
 # Multiselect for SKU per SKU principle
 SKUs = st.multiselect(
-     'Which SKUs would you like to include in this scenario?',
+     'Which SKUs would you like to include in this scenario? Choose from the list or type in SKU names.',
      allColumns,
      help = "Choose brands by clicking on the input. You can type in SKU name as well.")
 
 # Multiselect for agregated levels (Brand, Example_1, Example_2, etc.)
 Brands = st.multiselect(
-     'Which BRAND would you like to include in this scenario?',
+     'Which BRAND would you like to include in this scenario? Choose from the list or type in brand names.',
      ['AXE', 'California Scents', 'Refresh Your Car', 'Jelly Belly', 'Armor All', 'Driven'],
      help = "Choose brands by clicking on the input. You can type in brand name as well.")
 
