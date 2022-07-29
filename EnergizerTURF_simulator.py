@@ -48,7 +48,7 @@ with st.sidebar:
     if AutoChannel and not Walmart:
         originalTURF = originalTURF.query('CHANNEL == "AUTO"')      
         originalTURF = originalTURF.loc[:, 'USERID':'None of the above']
-        brand_list = ["Refresh Your Car!","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm & Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi-Clean","Paradise","Blessed","Mothers"]
+        brand_list = ["Refresh Your Car!","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi-Clean","Paradise","Blessed","Mothers"]
     elif not AutoChannel and Walmart:
         originalTURF = originalTURF.query('CHANNEL == "WALMART"')
         originalTURF = originalTURF.drop(originalTURF.loc[:, 'Arm Hammer Hidden Cabana Breeze car air freshener 2 5 oz 4 99':'Yankee Candle Vent Stick Pink Sands 6 49'].columns,axis = 1)
