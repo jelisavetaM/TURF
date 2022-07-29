@@ -46,7 +46,7 @@ with st.sidebar:
     Walmart = st.checkbox('Walmart')
 
     if AutoChannel and not Walmart:
-        originalTURF = originalTURF.query('CHANNEL == "AUTO"')
+        originalTURF = originalTURF.query('CHANNEL == "AUTO"')      
         originalTURF = originalTURF.loc[:, 'USERID':'None of the above']
     elif not AutoChannel and Walmart:
         originalTURF = originalTURF.query('CHANNEL == "WALMART"')
