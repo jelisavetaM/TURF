@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st
 import altair as alt
 import xlsxwriter
+from io import BytesIO
 
 
 @st.cache 
