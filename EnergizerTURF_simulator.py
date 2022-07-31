@@ -158,8 +158,8 @@ if calc:
     st.download_button(
         label="Download Excel workbook",
         data=resToDF.to_csv().encode('utf-8'),
-        file_name="workbook.xlsx",
-        mime="application/vnd.ms-excel"
+        file_name="workbook.csv",
+        mime="text/csv"
     )
     st.markdown('------------------------------')
     st.markdown('                                                              Selected SKUs reaches')
