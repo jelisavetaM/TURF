@@ -39,7 +39,7 @@ originalTURF = pd.read_csv('Merged.csv')
 # Add filters for respondents
 with st.sidebar:
 
-    st.markdown("<div style='color:red; font-size:30px; position:absolute; top:-8vh;'>EyeSee TURF simulator<br><p style='color:black'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
+    st.markdown("<div style='color:red; font-size:30px; position:absolute; top:-8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
     st.markdown("#")
     st.markdown("#")
     st.caption("<p style='color: white, font-family: Source Sans Pro, sans-serif'>Select channel:</p>", unsafe_allow_html=True)
