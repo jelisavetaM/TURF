@@ -152,10 +152,7 @@ if calc:
     # st.write(resToDF.astype(str))
     resToDF.drop(resToDF[resToDF['SKU'] == "USERID"].index, inplace = True)
     resToDFSize = resToDF.shape[1] 
-    def resizeDF(df):
-        st.write("sta")
-        st.session_state['resToDFSize'] = df.iloc[0:resToDFSize]
-    resToDFSize = st.number_input('Define reesult size (the default is maximum number of SKUs that have incremental value to reach).', min_value = 2, max_value = resToDF.shape[1], value = resToDF.shape[1], step = 1, on_change = resizeDF(resToDF))    
+    resToDFSize = st.number_input('Define reesult size (the default is maximum number of SKUs that have incremental value to reach).', min_value = 2, max_value = resToDF.shape[1], value = resToDF.shape[1], step = 1)    
     resToDF = resToDF.iloc[0:resToDFSize]
     st.table(resToDF)
 
