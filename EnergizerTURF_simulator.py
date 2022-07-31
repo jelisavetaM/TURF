@@ -76,7 +76,7 @@ with st.sidebar:
     st.markdown('#')
     st.markdown('#')
     with st.expander('How to use TURF simulator?'):
-        st.markdown("To be added...<br>...<br>...<br>...",unsafe_allow_html = True)
+        st.markdown("To be added...<br>...<br>...<br>...<br>...<br>...",unsafe_allow_html = True)
         
 allColumns = list(originalTURF.columns)
 del allColumns[0:4]
