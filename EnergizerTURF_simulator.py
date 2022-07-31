@@ -158,12 +158,12 @@ if calc:
     workbook = xlsxwriter.Workbook(output, {'in_memory': True})
     worksheet = workbook.add_worksheet()
 
-    worksheet.write('A1', 'Hello')
+    worksheet.write(resToDF)
     workbook.close()
 
     st.download_button(
         label="Download Excel workbook",
-        data=resToDF,
+        data=output.getvalue(),
         file_name="workbook.xlsx",
         mime="application/vnd.ms-excel"
     )
