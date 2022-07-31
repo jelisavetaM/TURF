@@ -47,7 +47,7 @@ def reach_percentage_and_order(sets,starting_feature_index,dataframe):
 
 with st.sidebar:
     st.markdown("<div style='color:#ff4b4b; font-size:30px; position:absolute; top:-8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
-
+with st.container():
     holderPass = st.empty()
     password = holderPass.text_input("Enter a password", type="password")
     if password == "ENR TURF":
