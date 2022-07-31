@@ -199,5 +199,7 @@ if password == "ENR TURF":
             st.altair_chart(c, use_container_width=True)
     else:
         st.error("Please upload TURF data file.")
-else:
+elif password == "":
     st.error("Please enter the password.")
+elif password != "ENR TURF":
+    st.error("Password is not correct.")
