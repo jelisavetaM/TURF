@@ -152,7 +152,7 @@ if calc:
     # st.write(resToDF.astype(str))
     resToDF.drop(resToDF[resToDF['SKU'] == "USERID"].index, inplace = True)
     resToDFSize = st.number_input('Define reesult size (the default is maximum number of SKUs that have incremental value to reach).', min_value = 2, max_value = resToDFSize.shape[1], value = resToDFSize.shape[1], step = 1)
-    resToDFSize = resToDF.iloc[0:resToDFSize]
+    resToDF = resToDF.iloc[0:resToDFSize]
     st.table(resToDF)
 
     st.markdown('------------------------------')
