@@ -2,8 +2,6 @@
 import pandas as pd
 import streamlit as st
 import altair as alt
-import xlsxwriter
-from io import BytesIO
 
 
 @st.cache 
@@ -42,6 +40,8 @@ originalTURF = pd.read_csv('Merged.csv')
 with st.sidebar:
 
     st.markdown("<div style='color:red; font-size:30px; position:absolute; top:-8vh;'>EyeSee TURF simulator</div>", unsafe_allow_html=True)
+    st.caption("Air Freshener Product Optimization project")
+   
     st.markdown("#")
     st.markdown("#")
     st.caption("<p style='color: white, font-family: Source Sans Pro, sans-serif'>Select channel:</p>", unsafe_allow_html=True)
@@ -156,9 +156,9 @@ if calc:
     st.table(resToDF)
 
     st.download_button(
-        label="Download Excel workbook",
+        label="Download TURF data to CSV",
         data=resToDF.to_csv().encode('utf-8'),
-        file_name="workbook.csv",
+        file_name="ENR_TURF_data.csv",
         mime="text/csv"
     )
     st.markdown('------------------------------')
