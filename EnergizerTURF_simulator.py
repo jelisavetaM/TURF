@@ -42,14 +42,12 @@ def reach_percentage_and_order(sets,starting_feature_index,dataframe):
     return [((len(sets[starting_feature_index]))/(len(dataframe)))], [dataframe.columns[starting_feature_index]]
 
 # import data
-originalTURF = pd.read_csv('Merged.csv')
+#originalTURF = pd.read_csv('Merged.csv')
 # upload data
-originalTURF_temp = st.empty()
-originalTURF_temp = st.file_uploader("Upload a TURF CSV file", accept_multiple_files=False)
-if originalTURF_temp is not None:
-    originalTURF = originalTURF_temp
-    originalTURF_temp.empty()
 
+originalTURF_temp = st.file_uploader("Upload a TURF CSV file", accept_multiple_files=False, key=f’{key_number}’)
+if originalTURF_temp is not None:
+    originalTURF = pd.read_csv(originalTURF_temp)
     # Add filters for respondents
     with st.sidebar:
 
