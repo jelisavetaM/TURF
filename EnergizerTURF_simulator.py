@@ -151,7 +151,7 @@ if calc:
     # st.write(resToDF.astype(str))
     resToDF.drop(resToDF[resToDF['SKU'] == "USERID"].index, inplace = True)
     st.table(resToDF)
-    st.download_button('Download CSV', resToDF, 'text/csv')
+    st.download_button('Download CSV', resToDF.astype(str), 'text/csv')
     st.markdown('------------------------------')
     st.markdown('                                                              Selected SKUs reaches')
 
