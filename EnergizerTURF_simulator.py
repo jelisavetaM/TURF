@@ -154,12 +154,6 @@ if calc:
     # st.write(resToDF.astype(str))
     resToDF.drop(resToDF[resToDF['SKU'] == "USERID"].index, inplace = True)
     st.table(resToDF)
-    output = BytesIO()
-    workbook = xlsxwriter.Workbook(output, {'in_memory': True})
-    worksheet = workbook.add_worksheet()
-
-    worksheet.write(resToDF)
-    workbook.close()
 
     st.download_button(
         label="Download Excel workbook",
