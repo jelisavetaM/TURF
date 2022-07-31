@@ -127,7 +127,7 @@ for var in ['CHANNEL','GENDER','AGE']:
         finalTarget.remove(var)
 
 st.markdown('#')   
-resToDFSize = st.number_input('Define reesult size (the default is maximum number of SKUs that have incremental value to reach).', min_value = 2, max_value = len(finalTarget) + 1, value = len(finalTarget) + 1, step = 1)    
+resToDFSize = st.number_input('Define reesult size (the default is maximum number of SKUs that have incremental value to reach).', min_value = 2, max_value = len(finalTarget) , value = len(finalTarget), step = 1)    
 
 calc = st.button('✈ Calculate')
 st.markdown('#')
