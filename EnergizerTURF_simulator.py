@@ -157,7 +157,7 @@ if calc:
 
     st.download_button(
         label="Download Excel workbook",
-        data=resToDF.to_excel().encode('utf-8'),
+        data=resToDF.to_csv().encode('utf-8'),
         file_name="workbook.xlsx",
         mime="application/vnd.ms-excel"
     )
