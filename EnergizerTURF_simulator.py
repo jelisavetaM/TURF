@@ -125,10 +125,7 @@ for var in ['CHANNEL','GENDER','AGE']:
         originalTURF = originalTURF.drop(var, axis=1)
     if var in finalTarget:
         finalTarget.remove(var)
-
-st.markdown('#')   
-resToDFSize = st.number_input('Define reesult size (the default is maximum number of SKUs that have incremental value to reach).', min_value = 2, max_value = len(finalTarget) , value = len(finalTarget), step = 1)    
-
+        
 calc = st.button('✈ Calculate')
 st.markdown('#')
 
@@ -153,8 +150,8 @@ if calc:
     resToDF = resToDF[['SKU','Reach %','Increment']]
     # st.write(resToDF.astype(str))
     resToDF.drop(resToDF[resToDF['SKU'] == "USERID"].index, inplace = True)
-    resToDF = resToDF.iloc[0:resToDFSize]
     st.table(resToDF)
+    st.download_button('Download CSV', resToDF, 'text/csv')
     st.markdown('------------------------------')
     st.markdown('                                                              Selected SKUs reaches')
 
