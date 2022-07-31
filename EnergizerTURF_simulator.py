@@ -163,7 +163,7 @@ if calc:
 
     st.download_button(
         label="Download Excel workbook",
-        data=resToDF.getvalue(),
+        data=resToDF,
         file_name="workbook.xlsx",
         mime="application/vnd.ms-excel"
     )
