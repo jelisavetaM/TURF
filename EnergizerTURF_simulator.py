@@ -47,7 +47,7 @@ originalTURF = pd.read_csv('Merged.csv')
 originalTURF_temp = st.empty()
 originalTURF_temp = st.file_uploader("Upload a TURF CSV file", accept_multiple_files=False)
 if originalTURF is not None:
-    originalTURF = originalTURF_temp.copy()
+    originalTURF = originalTURF_temp
     originalTURF_temp.empty()
 
     # Add filters for respondents
