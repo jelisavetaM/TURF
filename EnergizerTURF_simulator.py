@@ -128,7 +128,9 @@ with st.container():
     calc = st.button('✈ Calculate')
     st.markdown('#')
 
-    if calc:
+    if not calc:
+	st.info('kiki')
+    else:	
         if allSKUs:
             finalTarget = list(originalTURF.columns)
         else:
