@@ -80,12 +80,12 @@ def login():
 	if password == "ENR TURF":
 		holderPass.empty()
 		originalTURF_temp = holder.file_uploader("Upload a TURF CSV file", accept_multiple_files=False)
+		st.write(originalTURF_temp)
 		if originalTURF_temp is not None:
 			originalTURF = readData(originalTURF_temp)
 			holder.empty()
 		else:
 			st.error("Please upload TURF data file.")
-			originalTURF = 0
 	elif password == "":
 		password = "error"
 		st.error("Please enter the password.")
