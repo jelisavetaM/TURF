@@ -142,6 +142,13 @@ with st.container():
         st.write(finalTarget)
 
     finalTarget = list(set(finalTarget))
+
+    calc = st.button('✈ Calculate')
+    st.markdown('#')
+
+    if calc:
+		
+		
     if len(finalTarget) == 0:
         st.error('Please choose SKU and/or BRAND level to run stimulation.')
         st.stop()
@@ -154,11 +161,11 @@ with st.container():
         originalTURF = originalTURF.drop('CHANNEL', axis=1)
     if 'CHANNEL' in finalTarget:
         finalTarget.remove('CHANNEL')
-
-    calc = st.button('✈ Calculate')
-    st.markdown('#')
-
-    if calc:
+	
+	
+	
+	
+	
         finalTarget.append('USERID')
         originalTURF = originalTURF[[col for col in finalTarget]]
         sets = make_id_sets(originalTURF)
