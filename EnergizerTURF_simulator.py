@@ -49,7 +49,9 @@ def readData(df):
 @st.cache
 def defineTurfdata(df, ch):
 	if ch == "Auto Channel":
-		df = df.query('CHANNEL == "AUTO"')      
+		df = df.query('CHANNEL == "AUTO"')  
+		st.write(df.astyp(str))
+		st.stop()
 		df = df.loc[:, 'USERID':'None of the above']
 		if "None of the above" in df.columns:
 			df = df.drop("None of the above", axis=1)
