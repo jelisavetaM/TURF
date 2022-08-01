@@ -74,6 +74,7 @@ def designDF(df):
 
 def login():
 	holderPass = st.empty()
+	holder = st.empty()
 	password = holderPass.text_input("Enter a password:", type="password")	
 	if password == "ENR TURF":
 		originalTURF_temp = holder.file_uploader("Upload a TURF CSV file", accept_multiple_files=False)
@@ -90,7 +91,7 @@ def login():
 		password = "error"
 		st.error("Password is not correct.")
 		st.stop()
-	return originalTURF_temp
+	return originalTURF
 	
 with st.sidebar:
     st.markdown("<div style='color:#ff4b4b; font-size:30px; position:absolute; top: -8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
@@ -101,7 +102,7 @@ with st.container():
         st.markdown("#")
         st.caption("<p style='color: white, font-family: Source Sans Pro, sans-serif'>Select channel:</p>", unsafe_allow_html=True)
         channel = st.radio("Select channel:", ('Auto Channel', 'Walmart'))
-        [originalTURF,brand_list] = defineTurfdata(originalTURF, channel)
+        [originalTURF,brand_list] = defineTurfdata(originalTURF_temp, channel)
         st.caption("")
 	
     allColumns = list(originalTURF.columns)
