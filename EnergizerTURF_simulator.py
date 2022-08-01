@@ -72,7 +72,7 @@ def designDF(df):
 	df.drop(df[df['SKU'] == "USERID"].index, inplace = True)	
 	return 	[df, dr_plot]
 
-@st.cache
+@st.cache(suppress_st_warning=True)
 def login():
 	holderPass = st.empty()
 	holder = st.empty()
