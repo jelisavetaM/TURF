@@ -71,7 +71,6 @@ def designDF(df):
 
 @st.cache(suppress_st_warning=True)
 def login():
-	st.write("radi")
 	holderPass = st.empty()
 	password = holderPass.text_input("Enter a password:", type="password")	
 	if password == "ENR TURF":
