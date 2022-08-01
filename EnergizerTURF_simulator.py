@@ -86,7 +86,7 @@ with st.container():
                 st.caption("")
             
             allColumns = list(originalTURF.columns)
-            st.write(originalTURF)
+            st.write(originalTURF.columns)
             del allColumns[0:4]
 
             # Choose target SKUs
