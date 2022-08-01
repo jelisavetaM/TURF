@@ -89,8 +89,7 @@ with st.container():
                 st.markdown("#")
                 st.caption("<p style='color: white, font-family: Source Sans Pro, sans-serif'>Select channel:</p>", unsafe_allow_html=True)
                 channel = st.radio("Select channel:", ('Auto Channel', 'Walmart'))
-                originalTURF = defineTurfdata(originalTURF, channel)[0]
-                brand_list = defineTurfdata(originalTURF, channel)[1]
+                [originalTURF,brand_list] = defineTurfdata(originalTURF, channel)
                 st.caption("")
             
             allColumns = list(originalTURF.columns)
