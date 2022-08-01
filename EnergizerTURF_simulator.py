@@ -50,12 +50,9 @@ def readData(df):
 def defineTurfdata(df, ch):
 	if ch == "Auto Channel":
 		df = df.query('CHANNEL == "AUTO"')  
-		st.write(df.astype(str))
-		st.stop()
 		df = df.loc[:, 'USERID':'None of the above']
 		if "None of the above" in df.columns:
 			df = df.drop("None of the above", axis=1)
-		df = df.drop("None of the above", axis=1)
 		brand_list = ["Refresh Your Car","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi Clean","Paradise","Blessed","Mothers"]
 	elif ch == "Walmart":
 		df = df.query('CHANNEL == "WALMART"')
