@@ -1,8 +1,6 @@
 altair==4.2.0
-matplotlib==3.5.2
 pandas==1.4.2
 Pillow==9.2.0
 plotly==5.9.0
 pyreadstat==1.1.9
-streamlit==1.9.2
-xlsxwriter
+streamlit==1.11.1
