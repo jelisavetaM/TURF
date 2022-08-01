@@ -71,12 +71,13 @@ def designDF(df):
 	df = df[['SKU','Reach %','Increment']]
 	df.drop(df[df['SKU'] == "USERID"].index, inplace = True)	
 	return 	[df, dr_plot]
-
+@st.cache
 def login():
 	holderPass = st.empty()
 	holder = st.empty()
 	password = holderPass.text_input("Enter a password:", type="password")	
 	if password == "ENR TURF":
+		holderPass.empty()
 		originalTURF_temp = holder.file_uploader("Upload a TURF CSV file", accept_multiple_files=False)
 		if originalTURF_temp is not None:
 			originalTURF = readData(originalTURF_temp)
