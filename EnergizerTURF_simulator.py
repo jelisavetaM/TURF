@@ -65,7 +65,7 @@ with st.container():
                 st.markdown("#")
                 st.caption("<p style='color: white, font-family: Source Sans Pro, sans-serif'>Select channel:</p>", unsafe_allow_html=True)
                 channel = st.radio("What's your favorite movie genre", ('Auto Channel', 'Walmart'))
-
+                st.write(channel)
 
                 if channel == "AutoChannel":
                     originalTURF = originalTURF.query('CHANNEL == "AUTO"')      
