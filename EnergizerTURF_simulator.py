@@ -129,7 +129,7 @@ with st.container():
     st.markdown('#')
 
     if not calc:
-	st.info('kiki')
+        st.info('kiki')
     else:	
         if allSKUs:
             finalTarget = list(originalTURF.columns)
