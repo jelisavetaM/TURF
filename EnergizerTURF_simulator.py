@@ -71,6 +71,7 @@ def designDF(df):
 	df = df[['SKU','Reach %','Increment']]
 	df.drop(df[df['SKU'] == "USERID"].index, inplace = True)	
 	return 	[df, dr_plot]
+
 @st.cache
 def login():
 	holderPass = st.empty()
