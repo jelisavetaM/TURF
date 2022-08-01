@@ -41,10 +41,7 @@ def reach_percentage_and_order(sets,starting_feature_index,dataframe):
     """Initaties two lists, unduplicated reach and feature order  using starting index value and DF"""
     return [((len(sets[starting_feature_index]))/(len(dataframe)))], [dataframe.columns[starting_feature_index]]
 
-@st.cache 
-def readData(df):
-    originalTURF = pd.read_csv(df)
-    return originalTURF
+
 
 @st.cache
 def defineTurfdata(df, ch):
@@ -74,6 +71,11 @@ def designDF(df):
 
 @st.cache(suppress_st_warning=True)
 def login():
+ 
+def readData(df):
+	originalTURFdata = pd.read_csv(df)
+	return originalTURFdata
+
 	holderPass = st.empty()
 	password = holderPass.text_input("Enter a password:", type="password")	
 	if password == "ENR TURF":
@@ -81,7 +83,7 @@ def login():
 		holderPass.empty()
 		originalTURF_temp = holder.file_uploader("Upload a TURF CSV file", accept_multiple_files=False)
 		if originalTURF_temp is not None:
-			originalTURF = pd.read_csv(originalTURF_temp)
+			originalTURF = readData(originalTURF_temp)
 			holder.empty()
 		else:
 			st.error("Please upload TURF data file.")
