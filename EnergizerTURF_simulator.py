@@ -85,6 +85,7 @@ def login():
 			holder.empty()
 		else:
 			st.error("Please upload TURF data file.")
+			originalTURF = 0
 	elif password == "":
 		password = "error"
 		st.error("Please enter the password.")
