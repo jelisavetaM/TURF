@@ -48,11 +48,11 @@ def defineTurfdata(df, ch):
 	if ch == "Auto Channel":
 		df = df.query('CHANNEL == "AUTO"')  
 		df = df.loc[:, 'USERID':'Armor All Freshfx Smoke Destroyer Vent Clip Air Freshener 3 24']
-		brand_list = ["Refresh Your Car","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi Clean","Paradise","Blessed","Mothers"]
+		brand_list = ["Arm Hammer","Armor All","AXE","Blessed","California Scents","Chemical Guys","Driven","Febreze","Jelly Belly","Keystone","Lethal Threat","Stoner","Little Trees","Mothers","Oxi Clean","Ozium","Paradise","Refresh Your Car","Scent Bomb","Scents","Type S","Yankee Candle"]
 	elif ch == "Walmart":
 		df = df.query('CHANNEL == "WALMART"')
 		df = df.drop(df.loc[:, 'Arm Hammer Hidden Cabana Breeze car air freshener 2 5 oz 4 99':'Yankee Candle Vent Stick Pink Sands 6 49'].columns,axis = 1)
-		brand_list = ["Armor All ","AXE","California Scents","Citrus Magic","Driven","Febreze","Funkaway","Jelly Belly","Little Trees","Ozium","Refresh Your Car","Scent Bomb","Yankee"]
+		brand_list = ["Armor All ","AXE","Bahama Co","California Scents","Citrus Magic","Driven","Febreze","Funkaway","Jelly Belly","Little Trees","Ozium","Refresh Your Car","Scent Bomb","Yankee"]
 	return [df, brand_list]
 @st.cache
 def designDF(df):
