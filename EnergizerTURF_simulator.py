@@ -75,12 +75,11 @@ def designDF(df):
 @st.cache(suppress_st_warning=True)
 def login():
 	holderPass = st.empty()
-	holder = st.empty()
 	password = holderPass.text_input("Enter a password:", type="password")	
 	if password == "ENR TURF":
+		holder = st.empty()
 		holderPass.empty()
 		originalTURF_temp = holder.file_uploader("Upload a TURF CSV file", accept_multiple_files=False)
-		st.write(originalTURF_temp)
 		if originalTURF_temp is not None:
 			originalTURF = readData(originalTURF_temp)
 			holder.empty()
