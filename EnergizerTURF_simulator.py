@@ -140,7 +140,7 @@ with st.container():
                 originalTURF = originalTURF[[col for col in finalTarget]]
                 sets = make_id_sets(originalTURF)
                 if 'None of the above' in originalTURF.columns:
-                    o   riginalTURF = originalTURF.drop('None of the above', axis=1)
+                    originalTURF = originalTURF.drop('None of the above', axis=1)
                 order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum().idxmax()))
 
                 res = {order[i]: percentages[i] for i in range(len(order))}
