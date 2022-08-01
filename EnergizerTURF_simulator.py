@@ -181,7 +181,7 @@ with st.container():
 		alt.X('SKU', sort=list(resToDFplot['SKU']), axis=alt.Axis(labelAngle=-75, labelOverlap=False)),
 		alt.Y('Reach'),
 	).configure_mark(
-		opacity=0.4,
+		opacity=0.41,
 		color='blue'
 	).configure_axis(
 		grid=False
