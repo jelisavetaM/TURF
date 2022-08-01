@@ -139,6 +139,7 @@ with st.container():
             targetProductsBrand = []
 
         finalTarget = targetProductsSKU + targetProductsBrand
+	st.write(finalTarget)
 
     finalTarget = list(set(finalTarget))
     if len(finalTarget) == 0:
