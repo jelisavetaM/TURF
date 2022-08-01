@@ -137,9 +137,9 @@ with st.container():
 
 
             if 'CHANNEL' in originalTURF.columns:
-                originalTURF = originalTURF.drop(var, axis=1)
+                originalTURF = originalTURF.drop('CHANNEL', axis=1)
             if 'CHANNEL' in finalTarget:
-                finalTarget.remove(var)
+                finalTarget.remove('CHANNEL')
 
             calc = st.button('✈ Calculate')
             st.markdown('#')
