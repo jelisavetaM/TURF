@@ -54,7 +54,7 @@ def defineTurfdata(df, ch):
 		brand_list = ["Refresh Your Car","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi Clean","Paradise","Blessed","Mothers"]
 	elif ch == "Walmart":
 		df = df.query('CHANNEL == "WALMART"')
-		df = df.drop(originalTURF.loc[:, 'Arm Hammer Hidden Cabana Breeze car air freshener 2 5 oz 4 99':'Yankee Candle Vent Stick Pink Sands 6 49'].columns,axis = 1)
+		df = df.drop(df.loc[:, 'Arm Hammer Hidden Cabana Breeze car air freshener 2 5 oz 4 99':'Yankee Candle Vent Stick Pink Sands 6 49'].columns,axis = 1)
 		brand_list = ["Armor All ","AXE","California Scents","Citrus Magic","Driven","Febreze","Funkaway","Jelly Belly","Little Trees","Ozium","Refresh Your Car","Scent Bomb","Yankee"]
 	return [df, brand_list]
 @st.cache
