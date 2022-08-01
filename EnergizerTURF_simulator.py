@@ -41,10 +41,41 @@ def reach_percentage_and_order(sets,starting_feature_index,dataframe):
     """Initaties two lists, unduplicated reach and feature order  using starting index value and DF"""
     return [((len(sets[starting_feature_index]))/(len(dataframe)))], [dataframe.columns[starting_feature_index]]
 
-# import data
-#originalTURF = pd.read_csv('Merged.csv')
-# upload data
+@st.cache 
+def readData(df):
+    originalTURF = pd.read_csv(df)
+    return originalTURF
 
+@st.cache
+def defineTurfdata(df, ch):
+	if ch == "Auto Channel":
+		df = df.query('CHANNEL == "AUTO"')      
+		df = df.loc[:, 'USERID':'None of the above']
+		df = df.drop("None of the above", axis=1)
+		brand_list = ["Refresh Your Car","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi Clean","Paradise","Blessed","Mothers"]
+	elif ch == "Walmart":
+		df = df.query('CHANNEL == "WALMART"')
+		df = df.drop(originalTURF.loc[:, 'Arm Hammer Hidden Cabana Breeze car air freshener 2 5 oz 4 99':'Yankee Candle Vent Stick Pink Sands 6 49'].columns,axis = 1)
+		df = df.drop("None of the above", axis=1)
+		brand_list = ["Armor All ","AXE","California Scents","Citrus Magic","Driven","Febreze","Funkaway","Jelly Belly","Little Trees","Ozium","Refresh Your Car","Scent Bomb","Yankee"]
+	elif not "Auto Channel" and not "Walmart":
+		st.error('Please choose at least one channel')
+		st.stop()
+	return [df, brand_list]
+@st.cache
+def designDF(df):
+	df = pd.DataFrame(res.items(), columns=['SKU','Reach'])
+	df = df.sort_values(by=['Reach'])
+	df['Increment'] = df['Reach'].diff()
+	df['Reach %'] = pd.Series(["{0:.1f}%".format(val * 100) for val in df['Reach']], index = df.index)
+	df['Increment'] = pd.Series(["{0:.1f}%".format(val * 100) for val in df['Increment']], index = df.index)
+	df['Increment'][0] = "baseline"
+	df.reset_index(drop = True)
+	dr_plot = df[['SKU', 'Reach']]
+	df = df.drop('Reach', axis = 1)
+	df = df[['SKU','Reach %','Increment']]
+	df.drop(df[df['SKU'] == "USERID"].index, inplace = True)	
+return 	[df, dr_plot]
 with st.sidebar:
     st.markdown("<div style='color:#ff4b4b; font-size:30px; position:absolute; top:-8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
 with st.container():
@@ -55,36 +86,20 @@ with st.container():
         holder = st.empty()
         originalTURF_temp = holder.file_uploader("Upload a TURF CSV file", accept_multiple_files=False)
         if originalTURF_temp is not None:
-            originalTURF = pd.read_csv(originalTURF_temp)
+            originalTURF = readData(originalTURF_temp)
             holder.empty()
-            # Add filters for respondents
             with st.sidebar:
-
-                #st.markdown("<div style='color:#ff4b4b; font-size:30px; position:absolute; top:-8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
+                st.markdown("<div style='color:#ff4b4b; font-size:30px; position:absolute; top:-8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
                 st.markdown("#")
                 st.markdown("#")
                 st.caption("<p style='color: white, font-family: Source Sans Pro, sans-serif'>Select channel:</p>", unsafe_allow_html=True)
-                channel = st.radio("What's your favorite movie genre", ('Auto Channel', 'Walmart'))
-                st.write(channel)
-
-                if channel == "Auto Channel":
-                    originalTURF = originalTURF.query('CHANNEL == "AUTO"')      
-                    originalTURF = originalTURF.loc[:, 'USERID':'None of the above']
-                    originalTURF = originalTURF.drop("None of the above", axis=1)
-                    brand_list = ["Refresh Your Car","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi Clean","Paradise","Blessed","Mothers"]
-                elif channel == "Walmart":
-                    originalTURF = originalTURF.query('CHANNEL == "WALMART"')
-                    originalTURF = originalTURF.drop(originalTURF.loc[:, 'Arm Hammer Hidden Cabana Breeze car air freshener 2 5 oz 4 99':'Yankee Candle Vent Stick Pink Sands 6 49'].columns,axis = 1)
-                    originalTURF = originalTURF.drop("None of the above", axis=1)
-                    brand_list = ["Armor All ","AXE","California Scents","Citrus Magic","Driven","Febreze","Funkaway","Jelly Belly","Little Trees","Ozium","Refresh Your Car","Scent Bomb","Yankee"]
-                elif not "Auto Channel" and not "Walmart":
-                    st.error('Please choose at least one channel')
-                    st.stop()
-
+                channel = st.radio("Select channel:", ('Auto Channel', 'Walmart'))
+				originalTURF = defineTurfdata(originalTURF, channel)[0]
+				brand_list = defineTurfdata(originalTURF, channel)[1]
                 st.caption("")
             
             allColumns = list(originalTURF.columns)
-            del allColumns[0:4]
+            del allColumns[0:2]
 
             # Choose target SKUs
             # Multiselect for SKU per SKU principle
@@ -126,11 +141,11 @@ with st.container():
                 st.error('TURF cannot be run on one item, please add at least one more.')
                 st.stop()
 
-            for var in ['CHANNEL','GENDER','AGE']:
-                if var in originalTURF.columns:
-                    originalTURF = originalTURF.drop(var, axis=1)
-                if var in finalTarget:
-                    finalTarget.remove(var)
+
+            if 'CHANNEL' in originalTURF.columns:
+                originalTURF = originalTURF.drop(var, axis=1)
+            if 'CHANNEL' in finalTarget:
+                finalTarget.remove(var)
 
             calc = st.button('✈ Calculate')
             st.markdown('#')
@@ -142,20 +157,9 @@ with st.container():
                 if 'None of the above' in originalTURF.columns:
                     originalTURF = originalTURF.drop('None of the above', axis=1)
                 order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum().idxmax()))
-
+				
                 res = {order[i]: percentages[i] for i in range(len(order))}
-                resToDF = pd.DataFrame(res.items(), columns=['SKU','Reach'])
-                resToDF = resToDF.sort_values(by=['Reach'])
-                resToDF['Increment'] = resToDF['Reach'].diff()
-                resToDF['Reach %'] = pd.Series(["{0:.1f}%".format(val * 100) for val in resToDF['Reach']], index = resToDF.index)
-                resToDF['Increment'] = pd.Series(["{0:.1f}%".format(val * 100) for val in resToDF['Increment']], index = resToDF.index)
-                resToDF['Increment'][0] = "baseline"
-                resToDF.reset_index(drop = True)
-                resToDFplot = resToDF[['SKU', 'Reach']]
-                resToDF = resToDF.drop('Reach', axis = 1)
-                resToDF = resToDF[['SKU','Reach %','Increment']]
-                # st.write(resToDF.astype(str))
-                resToDF.drop(resToDF[resToDF['SKU'] == "USERID"].index, inplace = True)
+				resToDF = designDF(df)[0]
                 st.table(resToDF)
 
                 st.download_button(
@@ -166,7 +170,8 @@ with st.container():
                 )
                 st.markdown('------------------------------')
                 st.markdown('                                                              Selected SKUs reaches')
-
+				
+				resToDFplot = designDF(df)[1]
                 c = alt.Chart(resToDFplot).mark_bar().encode(
                 alt.X('SKU', sort=list(resToDFplot['SKU']), axis=alt.Axis(labelAngle=-75, labelOverlap=False)),
                 alt.Y('Reach'),
