@@ -71,7 +71,7 @@ def designDF(df):
 
 @st.cache(suppress_st_warning=True)
 def login():
-	st.markdown("#2")
+	st.markdown("#")
 	holderPass = st.empty()
 	password = holderPass.text_input("Enter a password:", type="password")	
 	if password == "ENR TURF":
