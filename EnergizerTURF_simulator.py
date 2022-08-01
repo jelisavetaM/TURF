@@ -93,7 +93,7 @@ def login():
 		password = "error"
 		st.error("Password is not correct.")
 		st.stop()
-	return originalTURF
+return originalTURF
 	
 with st.sidebar:
     st.markdown("<div style='color:#ff4b4b; font-size:30px; position:absolute; top: -8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
