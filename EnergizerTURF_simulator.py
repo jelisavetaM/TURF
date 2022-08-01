@@ -78,11 +78,12 @@ def login():
 		holder = st.empty()
 		holderPass.empty()
 		originalTURF_temp = holder.file_uploader("Upload a TURF CSV file", accept_multiple_files=False)
-		if originalTURF_temp:
+		if originalTURF_temp is None:
+			st.error("Please upload TURF data file.")
+
+		else:
 			originalTURF = pd.read_csv(originalTURF_temp)
 			holder.empty()
-		else:
-			st.error("Please upload TURF data file.")
 	elif password == "":
 		password = "error"
 		st.error("Please enter the password.")
