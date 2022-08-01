@@ -123,25 +123,7 @@ with st.container():
 
     allSKUs = st.checkbox('Include all SKUs in the stimulation')
 
-    if allSKUs:
-        finalTarget = list(originalTURF.columns)
-    else:
-        if len(SKUs) > 0:
-            targetProductsSKU = [col for col in originalTURF.columns if col in SKUs]  
-        else:
-            targetProductsSKU = []
 
-        if len(Brands) > 0:
-            targetProductsBrand = []
-            for Brand in Brands:
-                targetProductsBrand = targetProductsBrand + ([col for col in allColumns if Brand.lower() in col.lower()])
-        else:
-            targetProductsBrand = []
-
-        finalTarget = targetProductsSKU + targetProductsBrand
-        st.write(finalTarget)
-
-    finalTarget = list(set(finalTarget))
 
     calc = st.button('✈ Calculate')
     st.markdown('#')
