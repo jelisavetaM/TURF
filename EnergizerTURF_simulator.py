@@ -147,44 +147,44 @@ with st.container():
             finalTarget = targetProductsSKU + targetProductsBrand
             st.write(finalTarget)
 
-	    finalTarget = list(set(finalTarget))
-	    if len(finalTarget) == 0:
-		st.error('Please choose SKU and/or BRAND level to run stimulation.')
-		st.stop()
-	    if len(finalTarget) == 1:
-		st.error('TURF cannot be run on one item, please add at least one more.')
-		st.stop()
+        finalTarget = list(set(finalTarget))
+        if len(finalTarget) == 0:
+            st.error('Please choose SKU and/or BRAND level to run stimulation.')
+            st.stop()
+        if len(finalTarget) == 1:
+            st.error('TURF cannot be run on one item, please add at least one more.')
+            st.stop()
 
 
-	    if 'CHANNEL' in originalTURF.columns:
-		originalTURF = originalTURF.drop('CHANNEL', axis=1)
-	    if 'CHANNEL' in finalTarget:
-		finalTarget.remove('CHANNEL')
+        if 'CHANNEL' in originalTURF.columns:
+            originalTURF = originalTURF.drop('CHANNEL', axis=1)
+        if 'CHANNEL' in finalTarget:
+            finalTarget.remove('CHANNEL')
 
 
 
 
 
-		finalTarget.append('USERID')
-		originalTURF = originalTURF[[col for col in finalTarget]]
-		sets = make_id_sets(originalTURF)
-		order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum().idxmax()))
+        finalTarget.append('USERID')
+        originalTURF = originalTURF[[col for col in finalTarget]]
+        sets = make_id_sets(originalTURF)
+        order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum().idxmax()))
 
-		res = {order[i]: percentages[i] for i in range(len(order))}
-		[resToDF, resToDFplot] = designDF(originalTURF)
-		st.table(resToDF)
+        res = {order[i]: percentages[i] for i in range(len(order))}
+        [resToDF, resToDFplot] = designDF(originalTURF)
+        st.table(resToDF)
 
-		st.download_button(
+        st.download_button(
 				label="Download TURF data to CSV",
 				data=resToDF.to_csv().encode('utf-8'),
 				file_name="ENR_TURF_data.csv",
 				mime="text/csv"
 			)
-		st.markdown('------------------------------')
-		st.markdown('                                                              Selected SKUs reaches')
+        st.markdown('------------------------------')
+        st.markdown('                                                              Selected SKUs reaches')
 
 
-		c = alt.Chart(resToDFplot).mark_bar().encode(
+        c = alt.Chart(resToDFplot).mark_bar().encode(
 			alt.X('SKU', sort=list(resToDFplot['SKU']), axis=alt.Axis(labelAngle=-75, labelOverlap=False)),
 			alt.Y('Reach'),
 		).configure_mark(
@@ -201,4 +201,4 @@ with st.container():
 
 			# (c + text).properties(height=900)
 
-		st.altair_chart(c, use_container_width=True)
+        st.altair_chart(c, use_container_width=True)
