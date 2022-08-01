@@ -151,7 +151,7 @@ with st.container():
                 order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum().idxmax()))
 				
                 res = {order[i]: percentages[i] for i in range(len(order))}
-                resToDF = designDF(df)[0]
+                [resToDF, resToDFplot] = designDF(originalTURF)
                 st.table(resToDF)
 
                 st.download_button(
@@ -163,7 +163,7 @@ with st.container():
                 st.markdown('------------------------------')
                 st.markdown('                                                              Selected SKUs reaches')
 				
-                resToDFplot = designDF(df)[1]
+
                 c = alt.Chart(resToDFplot).mark_bar().encode(
                 alt.X('SKU', sort=list(resToDFplot['SKU']), axis=alt.Axis(labelAngle=-75, labelOverlap=False)),
                 alt.Y('Reach'),
