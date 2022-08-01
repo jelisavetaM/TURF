@@ -84,11 +84,11 @@ def login():
 			st.error("Please upload TURF data file.")
 	elif password == "":
 		password = "error"
-        st.error("Please enter the password.")
+		st.error("Please enter the password.")
 		st.stop()
-    elif password != "ENR TURF":
+	elif password != "ENR TURF":
 		password = "error"
-        st.error("Password is not correct.")
+		st.error("Password is not correct.")
 		st.stop()
 	return originalTURF_temp
 	
