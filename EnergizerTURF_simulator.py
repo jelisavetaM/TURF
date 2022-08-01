@@ -75,7 +75,8 @@ def designDF(df):
 	df = df.drop('Reach', axis = 1)
 	df = df[['SKU','Reach %','Increment']]
 	df.drop(df[df['SKU'] == "USERID"].index, inplace = True)	
-return 	[df, dr_plot]
+	return 	[df, dr_plot]
+
 with st.sidebar:
     st.markdown("<div style='color:#ff4b4b; font-size:30px; position:absolute; top:-8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
 with st.container():
