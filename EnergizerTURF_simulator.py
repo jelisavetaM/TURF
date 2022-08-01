@@ -81,7 +81,7 @@ def login():
 		holderPass.empty()
 		originalTURF_temp = holder.file_uploader("Upload a TURF CSV file", accept_multiple_files=False)
 		if originalTURF_temp is not None:
-			originalTURF = readData(originalTURF_temp)
+			originalTURF = pd.read_csv(originalTURF_temp)
 			holder.empty()
 		else:
 			st.error("Please upload TURF data file.")
@@ -93,7 +93,7 @@ def login():
 		password = "error"
 		st.error("Password is not correct.")
 		st.stop()
-return originalTURF
+	return originalTURF
 	
 with st.sidebar:
     st.markdown("<div style='color:#ff4b4b; font-size:30px; position:absolute; top: -8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
