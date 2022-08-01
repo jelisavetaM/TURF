@@ -80,8 +80,6 @@ with st.container():
                 elif not "AutoChannel" and not "Walmart":
                     st.error('Please choose at least one channel')
                     st.stop()
-                elif "AutoChannel" and "Walmart":
-                    brand_list = ["Refresh Your Car","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi Clean","Paradise","Blessed","Mothers","Armor All ","Citrus Magic","Funkaway","Yankee/WW"]
 
                 st.caption("")
             
