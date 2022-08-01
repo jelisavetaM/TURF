@@ -129,20 +129,37 @@ with st.container():
     st.markdown('#')
 
     if calc:
-		
-		
-        if len(finalTarget) == 0:
-            st.error('Please choose SKU and/or BRAND level to run stimulation.')
-            st.stop()
-        if len(finalTarget) == 1:
-            st.error('TURF cannot be run on one item, please add at least one more.')
-            st.stop()
+        if allSKUs:
+            finalTarget = list(originalTURF.columns)
+        else:
+            if len(SKUs) > 0:
+                targetProductsSKU = [col for col in originalTURF.columns if col in SKUs]  
+            else:
+                targetProductsSKU = []
+    
+            if len(Brands) > 0:
+                targetProductsBrand = []
+                for Brand in Brands:
+                    targetProductsBrand = targetProductsBrand + ([col for col in allColumns if Brand.lower() in col.lower()])
+            else:
+                targetProductsBrand = []
+    
+            finalTarget = targetProductsSKU + targetProductsBrand
+            st.write(finalTarget)
+
+    finalTarget = list(set(finalTarget))
+    if len(finalTarget) == 0:
+        st.error('Please choose SKU and/or BRAND level to run stimulation.')
+        st.stop()
+    if len(finalTarget) == 1:
+        st.error('TURF cannot be run on one item, please add at least one more.')
+        st.stop()
 
 
-        if 'CHANNEL' in originalTURF.columns:
-            originalTURF = originalTURF.drop('CHANNEL', axis=1)
-        if 'CHANNEL' in finalTarget:
-            finalTarget.remove('CHANNEL')
+    if 'CHANNEL' in originalTURF.columns:
+        originalTURF = originalTURF.drop('CHANNEL', axis=1)
+    if 'CHANNEL' in finalTarget:
+        finalTarget.remove('CHANNEL')
 	
 	
 	
