@@ -71,7 +71,7 @@ with st.container():
                     originalTURF = originalTURF.query('CHANNEL == "AUTO"')      
                     originalTURF = originalTURF.loc[:, 'USERID':'None of the above']
                     originalTURF = originalTURF.drop("None of the above", axis=1)
-                    brand_list = ["Refresh Your Car","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi-Clean","Paradise","Blessed","Mothers"]
+                    brand_list = ["Refresh Your Car","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi Clean","Paradise","Blessed","Mothers"]
                 elif channel == "Walmart":
                     originalTURF = originalTURF.query('CHANNEL == "WALMART"')
                     originalTURF = originalTURF.drop(originalTURF.loc[:, 'Arm Hammer Hidden Cabana Breeze car air freshener 2 5 oz 4 99':'Yankee Candle Vent Stick Pink Sands 6 49'].columns,axis = 1)
@@ -81,11 +81,12 @@ with st.container():
                     st.error('Please choose at least one channel')
                     st.stop()
                 elif "AutoChannel" and "Walmart":
-                    brand_list = ["Refresh Your Car","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi-Clean","Paradise","Blessed","Mothers","Armor All ","Citrus Magic","Funkaway","Yankee/WW"]
+                    brand_list = ["Refresh Your Car","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi Clean","Paradise","Blessed","Mothers","Armor All ","Citrus Magic","Funkaway","Yankee/WW"]
 
                 st.caption("")
-
+            
             allColumns = list(originalTURF.columns)
+            st.write(originalTURF)
             del allColumns[0:4]
 
             # Choose target SKUs
