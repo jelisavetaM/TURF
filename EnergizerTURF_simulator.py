@@ -64,14 +64,14 @@ with st.container():
                 st.markdown("#")
                 st.markdown("#")
                 st.caption("<p style='color: white, font-family: Source Sans Pro, sans-serif'>Select channel:</p>", unsafe_allow_html=True)
-                AutoChannel = st.checkbox('Auto Channel', 1)
-                Walmart = st.checkbox('Walmart')
+                channel = st.radio("What's your favorite movie genre", ('Auto Channel', 'Walmart'))
 
-                if AutoChannel and not Walmart:
+
+                if channel == AutoChannel:
                     originalTURF = originalTURF.query('CHANNEL == "AUTO"')      
                     originalTURF = originalTURF.loc[:, 'USERID':'None of the above']
                     brand_list = ["Refresh Your Car","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi-Clean","Paradise","Blessed","Mothers"]
-                elif not AutoChannel and Walmart:
+                elif channel == Walmart:
                     originalTURF = originalTURF.query('CHANNEL == "WALMART"')
                     originalTURF = originalTURF.drop(originalTURF.loc[:, 'Arm Hammer Hidden Cabana Breeze car air freshener 2 5 oz 4 99':'Yankee Candle Vent Stick Pink Sands 6 49'].columns,axis = 1)
                     brand_list = ["Armor All ","AXE","California Scents","Citrus Magic","Driven","Febreze","Funkaway","Jelly Belly","Little Trees","Ozium","Refresh Your Car","Scent Bomb","Yankee"]
@@ -82,22 +82,6 @@ with st.container():
                     brand_list = ["Refresh Your Car","Little Trees","Febreze","California Scents","Yankee Candle","AXE","Arm Hammer","Ozium","Scent Bomb","Scents","Driven","Armor All","Chemical Guys","Stoner","Jelly Belly","Type S","Keystone","Lethal Threat","Oxi-Clean","Paradise","Blessed","Mothers","Armor All ","Citrus Magic","Funkaway","Yankee/WW"]
 
                 st.caption("")
-
-                filters = st.selectbox(
-                    'Select filter:',
-                    ('None (Total data)', 'Gender', 'Age'))
-                if filters != 'None (Total data)':
-                    if filters == 'Gender':
-                        genderFilter = st.radio('Please select gender filter:',('Female', 'Male'))            
-                        originalTURF = originalTURF.query('GENDER == "' + genderFilter + '"')
-                    if filters == 'Age':
-                        ageFilter = st.radio('Please select age filter:',('18-35', '36+'))
-                        originalTURF = originalTURF.query('AGE == "' + ageFilter + '"')
-                st.markdown('#')
-                st.markdown('#')
-                st.markdown('#')
-                with st.expander('How to use TURF simulator?'):
-                    st.markdown("To be added...<br>...<br>...<br>...<br>...<br>...",unsafe_allow_html = True)
 
             allColumns = list(originalTURF.columns)
             del allColumns[0:4]
@@ -156,7 +140,7 @@ with st.container():
                 originalTURF = originalTURF[[col for col in finalTarget]]
                 sets = make_id_sets(originalTURF)
                 if 'None of the above' in originalTURF.columns:
-                    originalTURF = originalTURF.drop('None of the above', axis=1)
+                    o   riginalTURF = originalTURF.drop('None of the above', axis=1)
                 order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum().idxmax()))
 
                 res = {order[i]: percentages[i] for i in range(len(order))}
