@@ -69,8 +69,9 @@ def designDF(df):
 	df.drop(df[df['SKU'] == "USERID"].index, inplace = True)	
 	return 	[df, dr_plot]
 
-@st.cache(suppress_st_warning=False)
+@st.cache(suppress_st_warning=True)
 def login():
+	st.write("radi")
 	holderPass = st.empty()
 	password = holderPass.text_input("Enter a password:", type="password")	
 	if password == "ENR TURF":
@@ -97,7 +98,6 @@ with st.sidebar:
     st.markdown("<div style='color:#ff4b4b; font-size:30px; position:absolute; top: -8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
 with st.container():
     originalTURF_temp = login()
-    st.stop()
     with st.sidebar:
         st.markdown("#")
         st.markdown("#")
