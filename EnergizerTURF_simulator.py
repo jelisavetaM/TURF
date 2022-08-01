@@ -96,87 +96,87 @@ with st.sidebar:
     st.markdown("<div style='color:#ff4b4b; font-size:30px; position:absolute; top: -8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
 with st.container():
     originalTURF_temp = login()
-	with st.sidebar:
-		st.markdown("#")
-		st.markdown("#")
-		st.caption("<p style='color: white, font-family: Source Sans Pro, sans-serif'>Select channel:</p>", unsafe_allow_html=True)
-		channel = st.radio("Select channel:", ('Auto Channel', 'Walmart'))
-		[originalTURF,brand_list] = defineTurfdata(originalTURF, channel)
-		st.caption("")
+    with st.sidebar:
+        st.markdown("#")
+        st.markdown("#")
+        st.caption("<p style='color: white, font-family: Source Sans Pro, sans-serif'>Select channel:</p>", unsafe_allow_html=True)
+        channel = st.radio("Select channel:", ('Auto Channel', 'Walmart'))
+        [originalTURF,brand_list] = defineTurfdata(originalTURF, channel)
+        st.caption("")
 	
-	allColumns = list(originalTURF.columns)
-	del allColumns[0:2]
+    allColumns = list(originalTURF.columns)
+    del allColumns[0:2]
 
 	# Choose target SKUs
 	# Multiselect for SKU per SKU principle
-	SKUs = st.multiselect(
+    SKUs = st.multiselect(
 		 'Which SKUs would you like to include in this scenario? Choose from the list or type in SKU names.',
 		 allColumns,
 		 help = "Choose brands by clicking on the input. You can type in SKU name as well.")
 
 	# Multiselect for agregated levels (Brand, Example_1, Example_2, etc.)
-	Brands = st.multiselect(
+    Brands = st.multiselect(
 		 'Which BRAND would you like to include in this scenario? Choose from the list or type in brand names.',
 		 brand_list,
 		 help = "Choose brands by clicking on the input. You can type in brand name as well.")
 
-	allSKUs = st.checkbox('Include all SKUs in the stimulation')
+    allSKUs = st.checkbox('Include all SKUs in the stimulation')
 
-	if allSKUs:
-		finalTarget = list(originalTURF.columns)
-	else:
-		if len(SKUs) > 0:
-			targetProductsSKU = [col for col in originalTURF.columns if col in SKUs]  
-		else:
-			targetProductsSKU = []
+    if allSKUs:
+        finalTarget = list(originalTURF.columns)
+    else:
+        if len(SKUs) > 0:
+            targetProductsSKU = [col for col in originalTURF.columns if col in SKUs]  
+        else:
+            targetProductsSKU = []
 
-		if len(Brands) > 0:
-			targetProductsBrand = []
-			for Brand in Brands:
-				targetProductsBrand = targetProductsBrand + ([col for col in allColumns if Brand.lower() in col.lower()])
-		else:
-			targetProductsBrand = []
+        if len(Brands) > 0:
+            targetProductsBrand = []
+            for Brand in Brands:
+                targetProductsBrand = targetProductsBrand + ([col for col in allColumns if Brand.lower() in col.lower()])
+        else:
+            targetProductsBrand = []
 
-		finalTarget = targetProductsSKU + targetProductsBrand
+        finalTarget = targetProductsSKU + targetProductsBrand
 
-	finalTarget = list(set(finalTarget))
-	if len(finalTarget) == 0:
-		st.error('Please choose SKU and/or BRAND level to run stimulation.')
-		st.stop()
-	if len(finalTarget) == 1:
-		st.error('TURF cannot be run on one item, please add at least one more.')
-		st.stop()
+    finalTarget = list(set(finalTarget))
+    if len(finalTarget) == 0:
+        st.error('Please choose SKU and/or BRAND level to run stimulation.')
+        st.stop()
+    if len(finalTarget) == 1:
+        st.error('TURF cannot be run on one item, please add at least one more.')
+        st.stop()
 
 
-	if 'CHANNEL' in originalTURF.columns:
-		originalTURF = originalTURF.drop('CHANNEL', axis=1)
-	if 'CHANNEL' in finalTarget:
-		finalTarget.remove('CHANNEL')
+    if 'CHANNEL' in originalTURF.columns:
+        originalTURF = originalTURF.drop('CHANNEL', axis=1)
+    if 'CHANNEL' in finalTarget:
+        finalTarget.remove('CHANNEL')
 
-	calc = st.button('✈ Calculate')
-	st.markdown('#')
+    calc = st.button('✈ Calculate')
+    st.markdown('#')
 
-	if calc:
-		finalTarget.append('USERID')
-		originalTURF = originalTURF[[col for col in finalTarget]]
-		sets = make_id_sets(originalTURF)
-		order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum().idxmax()))
+    if calc:
+        finalTarget.append('USERID')
+        originalTURF = originalTURF[[col for col in finalTarget]]
+        sets = make_id_sets(originalTURF)
+        order, percentages = calculate_order_percentages(sets,125,originalTURF,originalTURF.columns.get_loc(originalTURF.drop(['USERID'], axis=1).sum().idxmax()))
 		
-		res = {order[i]: percentages[i] for i in range(len(order))}
-		[resToDF, resToDFplot] = designDF(originalTURF)
-		st.table(resToDF)
+        res = {order[i]: percentages[i] for i in range(len(order))}
+        [resToDF, resToDFplot] = designDF(originalTURF)
+        st.table(resToDF)
 
-		st.download_button(
+        st.download_button(
 			label="Download TURF data to CSV",
 			data=resToDF.to_csv().encode('utf-8'),
 			file_name="ENR_TURF_data.csv",
 			mime="text/csv"
 		)
-		st.markdown('------------------------------')
-		st.markdown('                                                              Selected SKUs reaches')
+        st.markdown('------------------------------')
+        st.markdown('                                                              Selected SKUs reaches')
 		
 
-		c = alt.Chart(resToDFplot).mark_bar().encode(
+        c = alt.Chart(resToDFplot).mark_bar().encode(
 		alt.X('SKU', sort=list(resToDFplot['SKU']), axis=alt.Axis(labelAngle=-75, labelOverlap=False)),
 		alt.Y('Reach'),
 	).configure_mark(
@@ -193,4 +193,4 @@ with st.container():
 
 		# (c + text).properties(height=900)
 
-		st.altair_chart(c, use_container_width=True)
+        st.altair_chart(c, use_container_width=True)
