@@ -78,7 +78,7 @@ def designDF(df):
 	return 	[df, dr_plot]
 
 with st.sidebar:
-    #st.markdown("<div style='color:#ff4b4b; font-size:30px; position:absolute; top:-8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
+    st.markdown("<div style='color:#ff4b4b; font-size:30px; position:absolute; top:-8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
 with st.container():
     holderPass = st.empty()
     password = holderPass.text_input("Enter a password:", type="password")
@@ -90,7 +90,6 @@ with st.container():
             originalTURF = readData(originalTURF_temp)
             holder.empty()
             with st.sidebar:
-                st.markdown("<div style='color:#ff4b4b; font-size:30px; position:absolute; top:-8vh;'>EyeSee TURF simulator<br><p style='color:white'>Air Freshener Product Optimization project</p></div>", unsafe_allow_html=True)
                 st.markdown("#")
                 st.markdown("#")
                 st.caption("<p style='color: white, font-family: Source Sans Pro, sans-serif'>Select channel:</p>", unsafe_allow_html=True)
