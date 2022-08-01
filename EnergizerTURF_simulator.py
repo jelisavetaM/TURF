@@ -50,7 +50,7 @@ def readData(df):
 def defineTurfdata(df, ch):
 	if ch == "Auto Channel":
 		df = df.query('CHANNEL == "AUTO"')  
-		st.write(df.astyp(str))
+		st.write(df.astype(str))
 		st.stop()
 		df = df.loc[:, 'USERID':'None of the above']
 		if "None of the above" in df.columns:
