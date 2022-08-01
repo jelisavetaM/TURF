@@ -72,9 +72,9 @@ def designDF(df):
 @st.cache(suppress_st_warning=True)
 def login():
  
-def readData(df):
-	originalTURFdata = pd.read_csv(df)
-	return originalTURFdata
+	def readData(df):
+		originalTURFdata = pd.read_csv(df)
+		return originalTURFdata
 
 	holderPass = st.empty()
 	password = holderPass.text_input("Enter a password:", type="password")	
