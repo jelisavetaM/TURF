@@ -67,7 +67,7 @@ with st.container():
                 channel = st.radio("What's your favorite movie genre", ('Auto Channel', 'Walmart'))
                 st.write(channel)
 
-                if channel == "AutoChannel":
+                if channel == "Auto Channel":
                     originalTURF = originalTURF.query('CHANNEL == "AUTO"')      
                     originalTURF = originalTURF.loc[:, 'USERID':'None of the above']
                     originalTURF = originalTURF.drop("None of the above", axis=1)
@@ -77,7 +77,7 @@ with st.container():
                     originalTURF = originalTURF.drop(originalTURF.loc[:, 'Arm Hammer Hidden Cabana Breeze car air freshener 2 5 oz 4 99':'Yankee Candle Vent Stick Pink Sands 6 49'].columns,axis = 1)
                     originalTURF = originalTURF.drop("None of the above", axis=1)
                     brand_list = ["Armor All ","AXE","California Scents","Citrus Magic","Driven","Febreze","Funkaway","Jelly Belly","Little Trees","Ozium","Refresh Your Car","Scent Bomb","Yankee"]
-                elif not "AutoChannel" and not "Walmart":
+                elif not "Auto Channel" and not "Walmart":
                     st.error('Please choose at least one channel')
                     st.stop()
 
